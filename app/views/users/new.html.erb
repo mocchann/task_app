@@ -1,0 +1,38 @@
+<h2>スケジュール新規作成</h2>
+
+<% if flash.alert %>
+    <p class="alert"><%= flash.alert %></p>
+<% end %>
+
+<%= render "shared/error", obj: @user %>
+
+<%= form_for @user do |f| %>
+    <table>
+        <tr>
+            <th><%= f.label :title ,"タイトル" %></th>
+            <td><%= f.text_field :title %></td>
+        </tr>
+        <tr>
+            <th><%= f.label :startday ,"開始日" %></th>
+            <td><%= f.date_field :startday %></td>
+        </tr>
+        <tr>
+            <th><%= f.label :finishday ,"終了日" %></th>
+            <td><%= f.date_field :finishday %></td>
+        </tr>
+        <tr>
+            <th><%= f.label :alltime ,"終日" %></th>
+            <td class="check"><%= f.check_box(:alltime, {}, checked_value = "◯",unchecked_value = " ") %><p>終日の場合はチェックを入れます</p></td>
+        </tr>
+        <tr>
+            <th><%= f.label :memo ,"スケジュールメモ" %></th>
+            <td><%= f.text_area :memo %></td>
+        </tr>
+    </table>
+    <div>
+        <ul class="sktr">
+            <li><%= f.submit "スケジュールを新規登録する" %></li>
+            <li><%= link_to "スケジュール一覧に戻る", :users %></li>
+        </ul>
+    </div>
+<% end %>
